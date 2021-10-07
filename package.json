@@ -1,0 +1,24 @@
+{
+  "name": "hourglassjs",
+  "version": "1.0.0",
+  "description": "A Javascript countdown timer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FreddyCro/hourglassjs.git"
+  },
+  "keywords": [
+    "js",
+    "countdown",
+    "timer"
+  ],
+  "author": "freddycro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FreddyCro/hourglassjs/issues"
+  },
+  "homepage": "https://github.com/FreddyCro/hourglassjs#readme"
+}
