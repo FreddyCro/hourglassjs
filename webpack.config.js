@@ -5,10 +5,15 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
+const entries = () => ({
+  'hourglass-umd.min': '/src/hourglass-umd.js',
+  'hourglass.min': '/src/hourglass.js',
+});
+
 module.exports = {
-  entry: './src/index.js',
+  entry: entries,
   output: {
-    filename: 'hourglass.min.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   mode: 'production',

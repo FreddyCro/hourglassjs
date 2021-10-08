@@ -9,9 +9,14 @@
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": 8
+    "ecmaVersion": 8,
+    "sourceType": "module"
   },
-  "ignorePatterns": ["node_modules/**", "webpack.config.js", "dist/**"],
+  "ignorePatterns": [
+    "node_modules/**",
+    "webpack.config.js",
+    "dist/**"
+  ],
   "rules": {
     "prettier/prettier": "error"
   },
