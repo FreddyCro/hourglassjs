@@ -6,8 +6,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const entries = () => ({
-  'hourglass-umd.min': '/src/hourglass-umd.js',
-  'hourglass.min': '/src/hourglass.js',
+  'hourglass-umd.min': '/src/index-umd.js',
+  'hourglass.min': '/src/index.js',
 });
 
 module.exports = {

@@ -8,8 +8,67 @@
     <script src="../dist/hourglass.min.js"></script>
   </head>
   <body>
+    <h1>
+      <span id="d">-</span>
+      <span>:</span>
+      <span id="h">-</span>
+      <span>:</span>
+      <span id="m">-</span>
+      <span>:</span>
+      <span id="s">-</span>
+    </h1>
+
     <script defer>
-      window.hourglass();
+      // const TZ = {
+      //   'America/New_York': 'UTC-4',
+      //   'Asia/Taipei': 'GMT+8',
+      //   'Asia/Urumqi': 'UTC+8',
+      //   'Asia/Shanghai': 'UTC+6',
+      //   'Asia/Bangkok': 'GMT+7',
+      //   'Asia/Kuala_Lumpur': 'MYT',
+      //   'Asia/Jakarta': 'WIB',
+      //   'Asia/Mumbai': 'UTC +5.5',
+      //   'Africa/Johannesburg': 'GMT+2',
+      //   'Africa/Lagos': 'GMT+1',
+      //   'Etc/GMT+4': 'GMT+4',
+      //   'Etc/GMT+2': 'GMT+2',
+      //   'Asia/Ho_Chi_Minh': 'GMT+7',
+      //   'Europe/Moscow': 'GMT+3',
+      //   'Europe/Berlin': 'GMT+1',
+      //   'Australia/Perth': 'AWST',
+      //   'Australia/Eucla': 'ACWST',
+      //   'Australia/Darwin': 'ACST',
+      //   'Australia/Brisbane': 'AEST',
+      //   'Australia/Adelaide': 'ACDT',
+      //   'Australia/Sydney': 'AEDT',
+      //   'Australia/Lord_Howe': 'LHDT',
+      //   'Pacific/Auckland': 'NZDT',
+      //   'Pacific/Chatham': 'CHADT',
+      //   'Europe/London': 'GMT',
+      //   'Europe/Prague': 'CET',
+      //   'Europe/Budapest': 'CET',
+      //   'Europe/Paris': 'GMT+1',
+      //   'Europe/Warsaw': 'CET',
+      //   'Europe/Madrid': 'GMT+1',
+      //   'Europe/Milan': 'GMT+1',
+      // };
+
+      var countdown = new window.Hourglass();
+      var options = {
+        end: '2021-10-09T12:00:00Z',
+        timezone: 'Asia/Taipei',
+        frequency: 1000,
+        callback: '',
+      };
+
+      countdown.set(options).start();
+
+      setInterval(function () {
+        document.querySelector('#d').innerHTML = window.countdown.time.days;
+        document.querySelector('#h').innerHTML = window.countdown.time.hours;
+        document.querySelector('#m').innerHTML = window.countdown.time.minutes;
+        document.querySelector('#s').innerHTML = window.countdown.time.seconds;
+      }, 1000);
     </script>
   </body>
 </html>
