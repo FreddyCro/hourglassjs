@@ -1,4 +1,4 @@
-import { checkExpiration, parseTime, getDateWithDiff } from './time';
+import { checkExpiration, parseTime, getTimezoneDate } from './time';
 
 const LOCALE = Intl.DateTimeFormat().resolvedOptions().timeZone;
 let _frequency = 100;
@@ -12,7 +12,7 @@ const stopCountdown = (time) => {
 };
 
 const updateTime = (time) => {
-  time.start = new Date(getDateWithDiff(Date.now(), time.timezone));
+  time.start = new Date(getTimezoneDate(Date.now(), time.timezone));
   const newTime = parseTime(time.start, time.end, time.timezone);
 
   time.days = newTime.days;
@@ -54,8 +54,8 @@ class Hourglass {
     if (callback) _callback = callback;
     if (timezone || LOCALE) this.time.timezone = timezone || LOCALE;
 
-    this.time.start = new Date(getDateWithDiff(Date.now(), this.time.timezone));
-    this.time.end = new Date(getDateWithDiff(end, this.time.timezone, true));
+    this.time.start = new Date(getTimezoneDate(Date.now(), this.time.timezone));
+    this.time.end = new Date(end);
 
     return this;
   }

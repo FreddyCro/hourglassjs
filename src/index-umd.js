@@ -1,5 +1,3 @@
-const hourglass = () => {
-  console.log('hourglass');
-};
+import { Hourglass } from './utils/hourglass';
 
-export { hourglass };
+export { Hourglass };
