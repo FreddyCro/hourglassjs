@@ -1,3 +1,5 @@
+import { format } from 'fecha';
+
 const checkExpiration = (start, end) => {
   return start >= end;
 };
@@ -13,4 +15,6 @@ const parseTime = (start, end) => {
   };
 };
 
-export { checkExpiration, parseTime };
+const formatTime = (date, formatter) => format(new Date(date), formatter);
+
+export { checkExpiration, parseTime, formatTime };

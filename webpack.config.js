@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const CompressionPlugin = require("compression-webpack-plugin");
 
 const entries = () => ({
   'hourglass-umd.min': '/src/index-umd.js',
@@ -37,7 +38,10 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  plugins: [new CleanWebpackPlugin({ dry: true, protectWebpackAssets: false })],
+  plugins: [
+    // new CompressionPlugin(),
+    new CleanWebpackPlugin({ dry: true, protectWebpackAssets: false })
+  ],
   optimization: {
     minimizer: [new UglifyJsPlugin()],
   },

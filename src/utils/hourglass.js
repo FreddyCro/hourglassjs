@@ -1,4 +1,4 @@
-import { checkExpiration, parseTime } from './time';
+import { checkExpiration, parseTime, formatTime } from './time';
 
 let _frequency = 100;
 let _callback = undefined;
@@ -39,6 +39,8 @@ class Hourglass {
     this.time = {
       start: new Date(0),
       end: new Date(0),
+      foramtedStart: new Date(0),
+      formatedEnd: new Date(0),
       days: 0,
       hours: 0,
       minutes: 0,
@@ -47,12 +49,17 @@ class Hourglass {
     };
   }
 
-  set({ end, frequency, callback }) {
+  set({ end, frequency, format, callback }) {
     if (frequency) _frequency = frequency;
     if (callback) _callback = callback;
 
     this.time.start = new Date(Date.now());
     this.time.end = new Date(end);
+
+    if (format) {
+      this.time.foramtedStart = formatTime(this.time.start, format);
+      this.time.formatedEnd = formatTime(end, format);
+    }
 
     return this;
   }
