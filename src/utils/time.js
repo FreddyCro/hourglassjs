@@ -13,7 +13,4 @@ const parseTime = (start, end) => {
   };
 };
 
-const getTimezoneDate = (date, tz) =>
-  new Date(new Date(date).toLocaleString('en-Us', { timeZone: tz }));
-
-export { checkExpiration, parseTime, getTimezoneDate };
+export { checkExpiration, parseTime };
