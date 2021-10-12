@@ -8,16 +8,7 @@
     <script src="../dist/hourglass.min.js"></script>
   </head>
   <body>
-    <h1>
-      <span id="d">-</span>
-      <span>:</span>
-      <span id="h">-</span>
-      <span>:</span>
-      <span id="m">-</span>
-      <span>:</span>
-      <span id="s">-</span>
-    </h1>
-
+    <h1 id="countdown"></h1>
     <script defer>
       // const TZ = {
       //   'America/New_York': 'UTC-4',
@@ -64,10 +55,16 @@
       countdown.set(options).start();
 
       setInterval(function () {
-        document.querySelector('#d').innerHTML = window.countdown.time.days;
-        document.querySelector('#h').innerHTML = window.countdown.time.hours;
-        document.querySelector('#m').innerHTML = window.countdown.time.minutes;
-        document.querySelector('#s').innerHTML = window.countdown.time.seconds;
+        const time =
+          window.countdown.time.days +
+          ':' +
+          window.countdown.time.hours +
+          ':' +
+          window.countdown.time.minutes +
+          ':' +
+          window.countdown.time.seconds;
+        document.querySelector('#countdown').innerHTML = time;
+        document.getElementsByTagName('title')[0].innerHTML = time;
       }, 1000);
     </script>
   </body>
