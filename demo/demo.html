@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hourglass</title>
+    <script src="../dist/hourglass.min.js"></script>
+  </head>
+  <body>
+    <h1 id="countdown"></h1>
+    <script defer>
+      var countdown = new window.Hourglass();
+      var options = {
+        end: '2021-10-15T00:00:00+08:00',
+        frequency: 1000,
+        format: 'MMM.DD.YYYY.hh:mm',
+        callback: function () {
+          console.log('done');
+        },
+      };
+
+      countdown.set(options).start();
+
+      setInterval(function () {
+        const time =
+          window.countdown.time.days +
+          ':' +
+          window.countdown.time.hours +
+          ':' +
+          window.countdown.time.minutes +
+          ':' +
+          window.countdown.time.seconds;
+        document.querySelector('#countdown').innerHTML = time;
+        document.getElementsByTagName('title')[0].innerHTML = time + ' | Hourglass';
+      }, 1000);
+    </script>
+  </body>
+</html>
