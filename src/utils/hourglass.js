@@ -1,13 +1,15 @@
 import { checkExpiration, parseTime, formatTime } from './time';
+import { inputDate } from './input-date';
 
-let _frequency = 100;
-let _callback = undefined;
-let _timer = undefined;
+let privateFrequency = 100;
+let privateCallback = undefined;
+let privateTimer = undefined;
+let privateDoUpdate = undefined;
 
 const stopCountdown = (time) => {
   time.expired = true;
-  _callback ? _callback() : undefined;
-  if (_timer) clearInterval(_timer);
+  privateCallback ? privateCallback() : undefined;
+  if (privateTimer) clearInterval(privateTimer);
 };
 
 const updateTime = (time) => {
@@ -24,13 +26,14 @@ const countdown = (time) => {
   if (checkExpiration(time.start, time.end)) {
     stopCountdown(time);
   } else {
-    _timer = setInterval(() => {
+    privateTimer = setInterval(() => {
       updateTime(time);
+      privateDoUpdate();
 
       if (checkExpiration(time.start, time.end)) {
         stopCountdown(time);
       }
-    }, _frequency);
+    }, privateFrequency);
   }
 };
 
@@ -47,25 +50,29 @@ class Hourglass {
       seconds: 0,
       expired: false,
     };
+
+    this.callback = undefined;
   }
 
-  set({ end, frequency, format, callback }) {
-    if (frequency) _frequency = frequency;
-    if (callback) _callback = callback;
+  set({ start, end, frequency, textFormat, callback, doUpdate }) {
+    if (!end) return console.error('Missing input "end" parameter.');
+    if (frequency) privateFrequency = frequency;
+    if (callback) privateCallback = callback;
+    if (doUpdate) privateDoUpdate = doUpdate;
 
-    this.time.start = new Date(Date.now());
-    this.time.end = new Date(end);
+    this.time.start = start ? inputDate(start) : Date.now();
+    this.time.end = inputDate(end);
 
-    if (format) {
-      this.time.foramtedStart = formatTime(this.time.start, format);
-      this.time.formatedEnd = formatTime(end, format);
+    if (textFormat) {
+      this.time.foramtedStart = formatTime(this.time.start, textFormat);
+      this.time.formatedEnd = formatTime(end, textFormat);
     }
 
     return this;
   }
 
   disable() {
-    if (_timer) clearInterval(_timer);
+    if (privateTimer) clearInterval(privateTimer);
   }
 
   start() {

@@ -15,7 +15,8 @@
   "ignorePatterns": [
     "node_modules/**",
     "webpack.config.js",
-    "dist/**"
+    "dist/**",
+    "**/*.spec.js"
   ],
   "rules": {
     "prettier/prettier": "error"

@@ -11,18 +11,11 @@
     <h1 id="countdown"></h1>
     <script defer>
       var countdown = new window.Hourglass();
-      var options = {
-        end: '2021-10-15T00:00:00+08:00',
-        frequency: 1000,
-        format: 'MMM.DD.YYYY.hh:mm',
-        callback: function () {
-          console.log('done');
-        },
+      var doneFn = function () {
+        console.log('done');
       };
 
-      countdown.set(options).start();
-
-      setInterval(function () {
+      var updateFn = function () {
         const time =
           window.countdown.time.days +
           ':' +
@@ -32,8 +25,19 @@
           ':' +
           window.countdown.time.seconds;
         document.querySelector('#countdown').innerHTML = time;
-        document.getElementsByTagName('title')[0].innerHTML = time + ' | Hourglass';
-      }, 1000);
+        document.getElementsByTagName('title')[0].innerHTML =
+          time + ' | Hourglass';
+      };
+
+      countdown
+        .set({
+          end: '2021-11-15T00:00:00+08:00',
+          frequency: 1000,
+          textFormat: 'MMM.DD.YYYY.hh:mm',
+          callback: doneFn,
+          doUpdate: updateFn,
+        })
+        .start();
     </script>
   </body>
 </html>
